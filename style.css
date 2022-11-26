@@ -21,7 +21,7 @@ form input{
 #tb{
   margin-top: 10vh;
   border-collapse: collapse;
-  width: 100vh;
+  width: 90vh;
 }
 #tb, th, td {
   border:1px solid black;
