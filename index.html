@@ -39,7 +39,7 @@
           <option value="Produits Solaires">Produits Solaires</option>
           <option value="Beauté des Mains et des Pieds">Beauté des Mains et des Pieds</option>
           <option value="Produits de Maquillage">Produits de Maquillage</option>
-          <option value=">Entretien Capillaires">Entretien Capillaires</option>
+          <option value="Entretien Capillaires">Entretien Capillaires</option>
           <option value="Parfums">Parfums</option>
         </select>
       </div>
@@ -129,7 +129,6 @@
         row++;
         ID++;
         error.innerHTML = "";
-        console.log("Row index in else" + rowIndex);
       }
     }
     function edit(e){
@@ -148,7 +147,6 @@
       document.getElementById("prod-type").value = type;
       document.getElementsByName("promo").value = promo;
       document.getElementById("sub").value = "Update";
-      console.log("Row index in: " + rowIndex.value);
       document.getElementById("sub").onclick = function(){
         table.rows[row].cells[1].innerHTML = document.getElementById("Nom").value;
         table.rows[row].cells[2].innerHTML = document.getElementById("marque").value;
@@ -165,7 +163,6 @@
         document.getElementById("sub").value = "Submit";
         document.getElementById("sub").onclick = showInTable;
         error.innerHTML = "";
-        console.log("Row index in: " + rowIndex.value);
       }
     }
     function del(e){
