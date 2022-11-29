@@ -57,7 +57,6 @@
     <section class="section2">
       <table id="tb">
        <tr class="tbl-header">
-        <th>ID</th>
         <th>Nom</th>
         <th>Marque</th>
         <th>Prix</th>
@@ -77,7 +76,6 @@
     submit.addEventListener("click" , showInTable );
     var row = 1;
     var ID = 1 ;
-    var rowIndex;
     function showInTable(e){
       e.preventDefault();
       var Nom = document.getElementById('Nom').value;
@@ -86,6 +84,7 @@
       var ProdDate = document.getElementById('ProdDate').value;
       var type = document.getElementById('prod-type').value;
       var promo = document.querySelector('input[name="promo"]:checked');
+      var table = document.getElementById('tb');
       if(Nom == "" || marque == "" || prix == "" || ProdDate == "" || type == "" || !promo){
         error.innerHTML = "Veuillez remplir tous les champs";
       }
@@ -108,14 +107,12 @@
         var cell5 = newRow.insertCell(4);
         var cell6 = newRow.insertCell(5);
         var cell7 = newRow.insertCell(6);
-        var cell8 = newRow.insertCell(7);
-        cell1.innerHTML = ID;
-        cell2.innerHTML = Nom;
-        cell3.innerHTML = marque;
-        cell4.innerHTML = prix;
-        cell5.innerHTML = ProdDate;
-        cell6.innerHTML = type;
-        cell7.innerHTML = promo.value;
+        cell1.innerHTML = Nom;
+        cell2.innerHTML = marque;
+        cell3.innerHTML = prix;
+        cell4.innerHTML = ProdDate;
+        cell5.innerHTML = type;
+        cell6.innerHTML = promo.value;
         var edit  = document.createElement("button");
         var del = document.createElement("button");
         del.setAttribute('class','button')
@@ -124,22 +121,21 @@
         edit.setAttribute('class','button');
         edit.setAttribute('onclick','edit(this)');
         edit.innerHTML = "Edit";  
-        cell8.appendChild(edit)
-        cell8.appendChild(del)
-        row++;
-        ID++;
+        cell7.appendChild(edit)
+        cell7.appendChild(del);
         error.innerHTML = "";
+        
       }
     }
     function edit(e){
       var row = e.parentNode.parentNode.rowIndex;
       var table = document.getElementById("tb");
-      var nom = table.rows[row].cells[1].innerHTML;
-      var marque = table.rows[row].cells[2].innerHTML;
-      var prix = table.rows[row].cells[3].innerHTML;
-      var proDate = table.rows[row].cells[4].innerHTML;
-      var type = table.rows[row].cells[5].innerHTML;
-      var promo = table.rows[row].cells[6].innerHTML;
+      var nom = table.rows[row].cells[0].innerHTML;
+      var marque = table.rows[row].cells[1].innerHTML;
+      var prix = table.rows[row].cells[2].innerHTML;
+      var proDate = table.rows[row].cells[3].innerHTML;
+      var type = table.rows[row].cells[4].innerHTML;
+      var promo = table.rows[row].cells[5].innerHTML;
       document.getElementById("Nom").value = nom;
       document.getElementById("marque").value = marque;
       document.getElementById("prix").value = prix;
@@ -148,12 +144,12 @@
       document.getElementsByName("promo").value = promo;
       document.getElementById("sub").value = "Update";
       document.getElementById("sub").onclick = function(){
-        table.rows[row].cells[1].innerHTML = document.getElementById("Nom").value;
-        table.rows[row].cells[2].innerHTML = document.getElementById("marque").value;
-        table.rows[row].cells[3].innerHTML = document.getElementById("prix").value;
-        table.rows[row].cells[4].innerHTML = document.getElementById("ProdDate").value;
-        table.rows[row].cells[5].innerHTML = document.getElementById("prod-type").value;
-        table.rows[row].cells[6].innerHTML = document.getElementsByName("promo").value;
+        table.rows[row].cells[0].innerHTML = document.getElementById("Nom").value;
+        table.rows[row].cells[1].innerHTML = document.getElementById("marque").value;
+        table.rows[row].cells[2].innerHTML = document.getElementById("prix").value;
+        table.rows[row].cells[3].innerHTML = document.getElementById("ProdDate").value;
+        table.rows[row].cells[4].innerHTML = document.getElementById("prod-type").value;
+        table.rows[row].cells[5].innerHTML = document.querySelector('input[name="promo"]:checked').value;
         document.getElementById("Nom").value = "";
         document.getElementById("marque").value = "";
         document.getElementById("prix").value = "";
@@ -162,15 +158,16 @@
         document.getElementsByName("promo").value = "";
         document.getElementById("sub").value = "Submit";
         document.getElementById("sub").onclick = showInTable;
-        error.innerHTML = "";
+      
       }
     }
     function del(e){
-      ID--;
-      // row--;
-      var row = e.parentNode.parentNode.rowIndex;
+      if(confirm("You Sure")){
+         var row = e.parentNode.parentNode.rowIndex;
       var table = document.getElementById("tb");
       table.deleteRow(row);
+      }
+     
       
     }
 
