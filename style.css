@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
 
 }
 body{
@@ -83,56 +82,4 @@ td{
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
-}
-#modalSuprimer , #Verif {
-  border: solid 1px white;
-  border-radius: 10px;
-  padding: 2%;
-  background-color: whitesmoke;
-  width: 30%;
-  margin-top: 10%;
-  position: fixed;
-  margin-right: auto;
-  margin-left: auto;
-  left: 0;
-  right: 0;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  display: none;
-}
-h1 {
-  color:rgba(46, 46, 46, 0.849);
-}
-
-#Verif-btn {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 5%;
-  width: 100px;
-  border: none;
-  border-radius: 10px;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 300%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 0%);
-
-}
-#Verif-btn:hover {
-  background-color: #d4dde0;
-  color: #000000;
-  transition: 0.4s;
-}
-#modalCancel {
-  background-color: #d4dde0;
-  padding: 5%;
-  margin-left: 5%;
-  border: none;
-  border-radius: 10px;
-}
-#ajouter:hover{
-  background-color: #d4dde0;
-  color: #000000;
-  transition: 0.4s;
 }
