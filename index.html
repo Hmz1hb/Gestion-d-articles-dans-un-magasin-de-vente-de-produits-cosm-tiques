@@ -11,7 +11,13 @@
   <header>
 
   </header>
-  <main>
+  <main>  <div id="Verif">
+      <h1>DETAILS</h1>
+      <p>Voici les details de votre Article .</p>
+  
+      <div id="Output"></div>
+      <button id="Verif-btn">D'accord</button>
+    </div>
     <section class="section1">
       <form onsubmit="functionOne(event);return false;">
         <div>
@@ -45,8 +51,8 @@
       </div>
       <div>
         <label for="Promo">Promotion:</label>
-        <label for="">Non</label><input type="radio" name="promo" value="Non">
-        <label for="">Oui</label><input type="radio" name="promo" value="Oui">
+        <label for="">Non</label><input type="radio" name="promo" value="Non" id="Non">
+        <label for="">Oui</label><input type="radio" name="promo" value="Oui" id="Oui">
       </div>
       <div>
         <input type="submit" value="submit" id="sub" onclick="">
@@ -67,15 +73,14 @@
       </tr>
       </table>
     </section>
+  
   </main>
   <script>
-    
- 
     var submit=document.getElementById('sub');
     error = document.getElementById('errout')
     submit.addEventListener("click" , showInTable );
     var row = 1;
-    var ID = 1 ;
+    var arr = []
     function showInTable(e){
       e.preventDefault();
       var Nom = document.getElementById('Nom').value;
@@ -98,7 +103,40 @@
         error.innerHTML = "Le prix ne doit pas être négatif";
       }
       else{
-        var table = document.getElementById('tb');
+    class Product{
+      constructor(Nom, marque, prix, ProdDate, type, promo){
+        this.Nom = Nom;
+        this.marque = marque;
+        this.prix = prix;
+        this.ProdDate = ProdDate;
+        this.type = type;
+        this.promo = promo;
+        }
+        details(){
+          return (
+          `Nom: ${this.Nom} <br>
+          Marque: ${this.marque}<br>
+          Prix: ${this.prix} <br>
+          Date de production: ${this.ProdDate} <br>
+          Type: ${this.type} <br>
+          Promotion: ${this.promo.value}`
+          )
+        }
+      }
+      var userProduct = new Product(
+        document.getElementById("Nom").value,
+        marque,
+        prix,
+        ProdDate,
+        type,
+        promo.value,
+      )
+ document.getElementById("Verif").style.display = "flex";
+        var modalOk = document.getElementById("Verif-btn");
+        modalOk.onclick = ok;
+        function ok() {
+          document.getElementById("Verif").style.display = "none";
+          var table = document.getElementById('tb');
         var newRow = table.insertRow(row);
         var cell1 = newRow.insertCell(0);
         var cell2 = newRow.insertCell(1);
@@ -124,10 +162,14 @@
         cell7.appendChild(edit)
         cell7.appendChild(del);
         error.innerHTML = "";
-        
-      }
+        }
+        arr.push(userProduct);
+        document.getElementById("Output").innerHTML = userProduct.details();
     }
-    function edit(e){
+    console.log(arr);
+    localStorage.setItem("product", JSON.stringify(arr));
+  }
+  function edit(e){
       var row = e.parentNode.parentNode.rowIndex;
       var table = document.getElementById("tb");
       var nom = table.rows[row].cells[0].innerHTML;
@@ -170,7 +212,6 @@
      
       
     }
-    
 
   </script>
 </body>
